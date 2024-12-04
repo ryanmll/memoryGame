@@ -3,6 +3,7 @@ import { CardProps } from '../Cards';
 import Cards from '../Cards';
 import { useRef, useState, useEffect } from 'react';
 import { duplicateRegenerateSortArray } from '../../utils/card-utils';
+import { Link } from 'react-router-dom';
 
 export interface GridProps {
     cards: CardProps[];
@@ -15,8 +16,6 @@ export function Grid({ cards }: GridProps) {
     const first = useRef<CardProps | null>(null);
     const second = useRef<CardProps | null>(null);
     const unflip = useRef(false);
-    const [matches, setMatches] = useState(0);
-    const [moves, setMoves] = useState(0);
 
     const [time, setTime] = useState(0); // Estado para controlar o cronômetro
     const [timerRunning, setTimerRunning] = useState(false); // Controle do estado do cronômetro
@@ -38,8 +37,6 @@ export function Grid({ cards }: GridProps) {
         first.current = null;
         second.current = null;
         unflip.current = false;
-        setMatches(0);
-        setMoves(0);
         setTime(0);
         setTimerRunning(false);
     };
@@ -75,12 +72,10 @@ export function Grid({ cards }: GridProps) {
                 if (first.current.back === second.current.back) {
                     first.current = null;
                     second.current = null;
-                    setMatches((m) => m + 1);
                 } else {
                     unflip.current = true;
                 }
 
-                setMoves((m) => m + 1);
             }
 
             return card;
@@ -97,30 +92,67 @@ export function Grid({ cards }: GridProps) {
 
     return (
         <>
-            <div className="text">
-                <p>
-                    Temporizador: {formatTime(time)} | Movimentos: {moves} | Encontrados: {matches} |{' '}
-                </p>
-                <button className="btn-reset" onClick={() => handleReset()}>
-                    Reiniciar
-                </button>{' '}
 
-                <button className="btn-reset" onClick={() => handleStopTimer()}>
-                    Parar Tempo
-                </button>
-            </div>
+            <div className="contain">
+                <div id='table'>
 
+                    <Link to={"/"}>
+                        <div className="circle-arrow">
+                            <i className="ri-arrow-left-line"></i>
+                        </div>
+                    </Link>
 
-            <div className="grid">
-                {stateCards.map((card) => {
-                    return <Cards {...card} key={card.id} 
-                    handleClick={handleClick} />;
-                })}
+                    <div className="player-table">
+                        <div className="circle"></div>
+                        <h3>Ryan</h3>
+                        <p>00:30</p>
+                    </div>
+                    <div className="player-table">
+                        <div className="circle"></div>
+                        <h3>Netin</h3>
+                        <p>00:35</p>
+                    </div>
+                    <div className="player-table">
+                        <div className="circle"></div>
+                        <h3>Henry</h3>
+                        <p>00:43</p>
+                    </div>
+                    <div className="player-table">
+                        <div className="circle"></div>
+                        <h3>Francisca</h3>
+                        <p>00:51</p>
+                    </div>
+                    <div className="player-table">
+                        <div className="circle"></div>
+                        <h3>Cleber</h3>
+                        <p>01:20</p>
+                    </div>
+
+                </div>
+
+                <div id='content'>
+                    <div className="text">
+                        <p>
+                            Temporizador: {formatTime(time)}
+                        </p>
+                        
+                    </div>
+                    <div className="grid">
+                        {stateCards.map((card) => {
+                            return <Cards {...card} key={card.id}
+                                handleClick={handleClick} />;
+                        })}
+                    </div>
+                    <button className="btn-reset" onClick={() => handleReset()}>
+                            Reiniciar
+                        </button>{' '}
+                        <button className="btn-reset" onClick={() => handleStopTimer()}>
+                            Parar Tempo
+                        </button>
+                </div>
             </div>
 
 
         </>
     );
 }
-
-
