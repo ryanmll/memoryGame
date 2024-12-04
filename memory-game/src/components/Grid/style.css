@@ -5,7 +5,7 @@
 }
 
 .text {
-    padding: 2rem 0;
+    padding: 20px;
 }
 
 .btn-reset{
@@ -15,8 +15,10 @@
     background-color: #FFEC78;
     border-radius: 30px ;
     transition: all 0.4s ease-in-out;
+    margin-top: 20px;
 
 }
+
 
 .btn-reset:hover{
     cursor: pointer;

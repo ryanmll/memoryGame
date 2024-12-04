@@ -143,7 +143,7 @@ export function Grid({ cards }: GridProps) {
                                 handleClick={handleClick} />;
                         })}
                     </div>
-                    <button className="btn-reset" onClick={() => handleReset()}>
+                    <button className="btn-reset"  onClick={() => handleReset()}>
                             Reiniciar
                         </button>{' '}
                         <button className="btn-reset" onClick={() => handleStopTimer()}>
