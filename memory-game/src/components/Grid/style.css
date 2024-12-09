@@ -72,11 +72,13 @@ i{
     height: 50px;
     gap: 0.7rem;
     margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 40px;
 
 }
 
 .player-table p{
     margin-top: 2px;
+    position: fixed;
+    left: 190px;
 
 }
